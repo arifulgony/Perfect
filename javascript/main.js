@@ -6,6 +6,57 @@
             nav.classList.toggle("active");
         }
 
+//card
+const plansSwitch = document.querySelector(".plans-switch");
+const basicPrice = document.querySelector(".basic-price");
+const professionalPrice = document.querySelector(".professional-price");
+const businessPrice = document.querySelector(".business-price");
+const planDuration = document.querySelectorAll(".plan-duration");
+
+plansSwitch.addEventListener("change", () => {
+  if (plansSwitch.checked) {
+    basicPrice.innerText = "$220";
+    professionalPrice.innerText = "$499";
+    businessPrice.innerText = "$799";
+    planDuration.forEach((p) => {
+      p.innerText = "/ year";
+    });
+  } else {
+    basicPrice.innerText = "$20";
+    professionalPrice.innerText = "$48";
+    businessPrice.innerText = "$80";
+    planDuration.forEach((p) => {
+      p.innerText = "/ month";
+    });
+  }
+});
+/*========= Testimonials ==============*/
+const sliderElm = document.querySelector(".container_slider .slider")
+const btnLeft = document.querySelector(".container_slider .btn-left")
+const btnRight = document.querySelector(".container_slider .btn-right")
+const numberSliderBoxs = sliderElm.children.length;
+let idxCurrentSlide = 0;
+
+function moveSlider() {
+let leftMargin = (sliderElm.clientWidth / numberSliderBoxs) * idxCurrentSlide;
+sliderElm.style.marginLeft = -leftMargin + "px";
+console.log(sliderElm.clientWidth, leftMargin);
+}
+function moveLeft() {
+if (idxCurrentSlide === 0) idxCurrentSlide = numberSliderBoxs - 1;
+else idxCurrentSlide--;
+moveSlider();
+}
+function moveRight() {
+if (idxCurrentSlide === numberSliderBoxs - 1) idxCurrentSlide = 0;
+else idxCurrentSlide++;
+moveSlider();
+}
+
+btnLeft.addEventListener("click", moveLeft);
+btnRight.addEventListener("click", moveRight);
+window.addEventListener("resize", moveSlider);
+
 
 //active button accoding
  var button1 = document.getElementById("General"); 
